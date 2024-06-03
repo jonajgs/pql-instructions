@@ -19,11 +19,19 @@ server.get('/api/players/available/', (req, res) => {
   res.jsonp(availablePlayers);
 });
 
+// Return all players that are still available to be drafted by a team
+server.get('/api/teams', (req, res) => {
+  // Get all players
+  let players = router.db.get('teams').value();
+
+  res.jsonp(players);
+});
+
 
 /**
  * Customize POST /api/teams so after creating a team, the team_id is added to the players
  * @example
- * 
+ *
  * POST /api/teams
  * ```json
  *  {
